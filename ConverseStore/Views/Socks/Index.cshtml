@@ -1,0 +1,48 @@
+﻿@using Context.Models;
+@model IEnumerable<Socks>
+@{
+    ViewData["Title"] = "All Socks";
+}
+
+
+<center>
+    <a class="btn btn-primary" asp-controller="Sneaker" asp-action="Create" asp-area="">Add Sneaker</a>
+</center>
+@foreach (var item in Model)
+{
+
+    <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" data-holder-rendered="true">
+            <div class="card-body">
+                <p class="card-text">
+                    <b>@item.Name</b> <br />
+                    <br>
+                    
+                    Size  : @item.Size
+                    <br />
+                    @if (item.OFF == null || item.OFF == 0)
+                    {
+                        <span>price: @item.Cost</span>
+                    }
+                    else
+                    {
+                        var priceOff = (item.Cost - (item.Cost * (item.OFF)) / 100);
+                        <span>price :<s>@item.Cost</s> @priceOff</span>
+                    }
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="Sneaker" asp-action="Detail" asp-route-id="@item.Id">View</a>
+
+                        <a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="Sneaker" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="Sneaker" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+
+
+                    </div>
+                    <small class="text-muted">Left : @item.Count</small>
+                </div>
+            </div>
+        </div>
+    </div>
+}
