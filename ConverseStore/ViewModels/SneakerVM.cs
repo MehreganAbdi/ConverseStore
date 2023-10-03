@@ -2,7 +2,7 @@
 {
     public class SneakerVM
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string? Color { get; set; }
         public int? Size { get; set; }
         public int Cost { get; set; }

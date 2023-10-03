@@ -1,0 +1,50 @@
+﻿@using ConverseStore.ViewModels;
+@model SneakerVM
+@{
+    ViewData["Title"] = "Edit Sneaker";
+}
+
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+    <input asp-for="Id" type="hidden" value="@Model.Id" class="form-control" />
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" type="text" value="@Model.Name" class="form-control" placeholder="Enter Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Count">Count</label>
+        <input asp-for="Count" type="number" value="@Model.Count" class="form-control" placeholder="count">
+        <span asp-validation-for="Count" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Color">Color</label>
+        <input asp-for="Color" type="text" value="@Model.Color" class="form-control" placeholder="Color">
+        <span asp-validation-for="Color" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Size">Size</label>
+        <input asp-for="Size" type="number" value="@Model.Size" class="form-control" placeholder="Size">
+        <span asp-validation-for="Size" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Cost">Cost</label>
+        <input asp-for="Cost" type="number" value="@Model.Cost" class="form-control" placeholder="Cost">
+        <span asp-validation-for="Cost" class="text-danger"></span>
+    </div>
+    <br />
+   
+    <br />
+    <div class="form-group">
+        <label asp-for="OFF">OFF</label>
+        <input asp-for="OFF" type="number" value="@Model.OFF" class="form-control" placeholder="OFF">
+        <span asp-validation-for="OFF" class="text-danger"></span>
+    </div>
+    <br />
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

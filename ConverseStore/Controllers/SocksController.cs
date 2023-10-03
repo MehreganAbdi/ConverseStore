@@ -35,13 +35,13 @@ namespace ConverseStore.Controllers
             return RedirectToAction("Index", "Socks");
         }
 
-        public async Task<IActionResult> Delete(string Id)
+        public async Task<IActionResult> Delete(int Id)
         {
             await _socksRepository.RemoveAsync(await _socksRepository.GetByIdAsync(Id));
             return RedirectToAction("Index","Socks");
         }
 
-        public async Task<IActionResult> Edit(string Id)
+        public async Task<IActionResult> Edit(int Id)
         {
             var socks = await _socksRepository.GetByIdAsync(Id);
             if (socks == null)
@@ -78,7 +78,7 @@ namespace ConverseStore.Controllers
         }
 
 
-        public async Task<IActionResult> Detail(string Id)
+        public async Task<IActionResult> Detail(int Id)
         {
             var socks = await _socksRepository.GetByIdAsync(Id);
             return socks != null ? View(socks) : RedirectToAction("Index", "Socks"); 
