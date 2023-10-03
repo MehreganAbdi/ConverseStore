@@ -25,4 +25,10 @@
     <ProjectReference Include="..\Context\Context.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Socks\" />
+    <Folder Include="Views\Sneaker\" />
+  </ItemGroup>
+
 </Project>
