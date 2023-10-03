@@ -39,17 +39,17 @@ namespace Application.Repositories
             return await _context.Socks.ToListAsync();
         }
 
-        public Socks GetById(string Id)
+        public Socks GetById(int Id)
         {
             return _context.Socks.FirstOrDefault(s => s.Id == Id);
         }
 
-        public async Task<Socks> GetByIdAsync(string Id)
+        public async Task<Socks> GetByIdAsync(int Id)
         {
             return await _context.Socks.FirstOrDefaultAsync(s=>s.Id==Id);
         }
 
-        public async Task<Socks> GetByIdAsyncAsNoTracking(string Id)
+        public async Task<Socks> GetByIdAsyncAsNoTracking(int Id)
         {
             return await _context.Socks.AsNoTracking().FirstOrDefaultAsync(s => s.Id == Id);
         }

@@ -19,7 +19,7 @@ namespace ConverseStore.Controllers
             return View(sneakers);
         }
 
-        public IActionResult Delete(string Id)
+        public IActionResult Delete(int Id)
         {
             _sneakerRepository.Remove(_sneakerRepository.GetById(Id));
             return RedirectToAction("Index", "Sneaker");
@@ -27,26 +27,31 @@ namespace ConverseStore.Controllers
 
         public IActionResult Create()
         {
-            var reloadSafety = new Sneaker();
+            var reloadSafety = new SneakerVM();
             return View(reloadSafety);
         }
         [HttpPost]
-        public async Task<IActionResult> Create(Sneaker sneaker)
+        public async Task<IActionResult> Create(SneakerVM sneakerVM)
         {
-            if (!ModelState.IsValid)
+            var sneaker = new Sneaker()
             {
-                return View(sneaker);
-            }
+                Name = sneakerVM.Name,
+                Color = sneakerVM.Color,
+                Cost = sneakerVM.Cost,
+                Count = sneakerVM.Count,
+                Size = sneakerVM.Size,
+                OFF = 0
+            };
             await _sneakerRepository.AddAsync(sneaker);
             return RedirectToAction("Index", "Sneaker");
         }
 
-        public async Task<IActionResult> Detail(string Id)
+        public async Task<IActionResult> Detail(int Id)
         {
             var sneaker = await _sneakerRepository.GetByIdAsync(Id);
             return View(sneaker);
         }
-        public async Task<IActionResult> Edit(string Id)
+        public async Task<IActionResult> Edit(int Id)
         {
             var sneaker = await _sneakerRepository.GetByIdAsync(Id);
             var sneakerVM = new SneakerVM()

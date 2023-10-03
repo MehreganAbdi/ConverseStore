@@ -11,9 +11,9 @@ namespace Application.Interfaces
     {
         Task<IEnumerable<Socks>> GetAllAsync();
         IEnumerable<Socks> GetAll();
-        Task<Socks> GetByIdAsync(string Id);
-        Socks GetById(string Id);
-        Task<Socks> GetByIdAsyncAsNoTracking(string Id);
+        Task<Socks> GetByIdAsync(int Id);
+        Socks GetById(int Id);
+        Task<Socks> GetByIdAsyncAsNoTracking(int Id);
         Task<bool> AddAsync(Socks socks);
         bool Add(Socks socks);
         Task<bool> RemoveAsync(Socks socks);

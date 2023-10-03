@@ -11,9 +11,9 @@ namespace Application.Interfaces
     {
         Task<IEnumerable<Sneaker>> GetAllAsync();
         IEnumerable<Sneaker> GetAll();
-        Task<Sneaker> GetByIdAsync(string Id);
-        Sneaker GetById(string Id);
-        Task<Sneaker> GetByIdAsyncAsNoTracking(string Id);
+        Task<Sneaker> GetByIdAsync(int Id);
+        Sneaker GetById(int Id);
+        Task<Sneaker> GetByIdAsyncAsNoTracking(int Id);
         Task<bool> AddAsync(Sneaker sneaker);
         bool Add(Sneaker sneaker);
         Task<bool> RemoveAsync(Sneaker sneaker);

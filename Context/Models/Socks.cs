@@ -11,7 +11,7 @@ namespace Context.Models
     {
 
         [Key]
-        public string Id { get; set; }
+        public int Id { get; set; }
         public int? Size { get; set; }
         public int Cost { get; set; }
         public int? Count { get; set; }

@@ -40,17 +40,17 @@ namespace Application.Repositories
             return await _context.Sneakers.ToListAsync();
         }
 
-        public Sneaker GetById(string Id)
+        public Sneaker GetById(int Id)
         {
             return _context.Sneakers.FirstOrDefault(s => s.Id == Id);
         }
 
-        public async Task<Sneaker> GetByIdAsync(string Id)
+        public async Task<Sneaker> GetByIdAsync(int Id)
         {
             return await _context.Sneakers.FirstOrDefaultAsync(s => s.Id == Id);
         }
 
-        public async Task<Sneaker> GetByIdAsyncAsNoTracking(string Id)
+        public async Task<Sneaker> GetByIdAsyncAsNoTracking(int Id)
         {
             return await _context.Sneakers.AsNoTracking().FirstOrDefaultAsync(s => s.Id == Id);
         }
