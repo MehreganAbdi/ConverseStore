@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
-    public interface ISneakerReository
+    public interface ISneakerRepository
     {
         Task<IEnumerable<Sneaker>> GetAllAsync();
         IEnumerable<Sneaker> GetAll();

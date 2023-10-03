@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Application.Repositories
 {
-    public class SneakerRepository : ISneakerReository
+    public class SneakerRepository : ISneakerRepository
     {
         private readonly StoreDbContext _context;
         public SneakerRepository(StoreDbContext context)

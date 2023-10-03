@@ -1,3 +1,5 @@
+using Application.Interfaces;
+using Application.Repositories;
 using Context.Data;
 using Context.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -15,7 +17,8 @@ namespace ConverseStore
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-
+            builder.Services.AddScoped<ISneakerRepository, SneakerRepository>();
+            builder.Services.AddScoped<ISocksRepository, SocksRepository>();
 
 
             builder.Services.AddDbContext<StoreDbContext>(options =>
