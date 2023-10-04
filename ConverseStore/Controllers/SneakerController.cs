@@ -8,9 +8,11 @@ namespace ConverseStore.Controllers
     public class SneakerController : Controller
     {
         private readonly ISneakerRepository _sneakerRepository;
-        public SneakerController(ISneakerRepository sneakerRepository)
+        private readonly IPhotoService _photoService;
+        public SneakerController(IPhotoService photoService, ISneakerRepository sneakerRepository)
         {
             _sneakerRepository = sneakerRepository;
+            _photoService = photoService;
         }
 
         public async Task<IActionResult> Index()
@@ -33,6 +35,7 @@ namespace ConverseStore.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(SneakerVM sneakerVM)
         {
+            var result = await _photoService.AddPhotoAsync(sneakerVM.Image);
             var sneaker = new Sneaker()
             {
                 Name = sneakerVM.Name,
@@ -40,7 +43,8 @@ namespace ConverseStore.Controllers
                 Cost = sneakerVM.Cost,
                 Count = sneakerVM.Count,
                 Size = sneakerVM.Size,
-                OFF = 0
+                OFF = 0,
+                Image = result.Url.ToString()
             };
             await _sneakerRepository.AddAsync(sneaker);
             return RedirectToAction("Index", "Sneaker");
@@ -73,6 +77,8 @@ namespace ConverseStore.Controllers
             {
                 return View(sneakerVM);
             }
+            var result = await _photoService.AddPhotoAsync(sneakerVM.Image);
+
             var sneaker = new Sneaker()
             {
                 Id = sneakerVM.Id,
@@ -81,7 +87,8 @@ namespace ConverseStore.Controllers
                 Cost = sneakerVM.Cost,
                 Count = sneakerVM.Count,
                 Name = sneakerVM.Name,
-                OFF = sneakerVM.OFF
+                OFF = sneakerVM.OFF,
+                Image = result.Url.ToString()
             };
              _sneakerRepository.Update(sneaker);
             return RedirectToAction("Index", "Sneaker");

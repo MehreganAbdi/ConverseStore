@@ -8,9 +8,11 @@ namespace ConverseStore.Controllers
     public class SocksController : Controller
     {
         private readonly ISocksRepository _socksRepository;
-        public SocksController(ISocksRepository socksRepository)
+        private readonly IPhotoService _photoService;
+        public SocksController(IPhotoService photoService, ISocksRepository socksRepository)
         {
             _socksRepository = socksRepository;
+            _photoService = photoService;
         }
         public async Task<IActionResult> Index()
         {
@@ -20,17 +22,27 @@ namespace ConverseStore.Controllers
 
         public IActionResult Create()
         {
-            var reloadSafety = new Socks();
+            var reloadSafety = new SocksVM();
             return View(reloadSafety);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Socks socks)
+        public async Task<IActionResult> Create(SocksVM socksVM)
         {
             if (!ModelState.IsValid)
             {
-                return View(socks);
+                return View(socksVM);
             }
+            var result = await _photoService.AddPhotoAsync(socksVM.Image);
+            var socks = new Socks()
+            {
+                Name = socksVM.Name,
+                Cost = socksVM.Cost,
+                Count = socksVM.Count,
+                Size = socksVM.Size,
+                OFF = 0 , 
+                Image = result.Url.ToString()
+            };
             await _socksRepository.AddAsync(socks);
             return RedirectToAction("Index", "Socks");
         }
@@ -66,6 +78,8 @@ namespace ConverseStore.Controllers
             {
                 return View(socksVM);
             }
+            var result = await _photoService.AddPhotoAsync(socksVM.Image);
+
             var socks = new Socks()
             {
                 Id = socksVM.Id,
@@ -73,7 +87,8 @@ namespace ConverseStore.Controllers
                 Name = socksVM.Name,
                 Count = socksVM.Count,
                 Size = socksVM.Size,
-                OFF = socksVM.OFF
+                OFF = socksVM.OFF ,
+                Image = result.Url.ToString()
             };
             _socksRepository.Update(socks);
             return RedirectToAction("Index", "Socks");

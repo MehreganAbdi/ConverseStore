@@ -8,9 +8,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Interfaces;
+
 namespace Application.Services
 {
-    public class PhotoService
+    public class PhotoService : IPhotoService
     {
         private readonly Cloudinary _cloudinary;
         public PhotoService(IOptions<CloudinarySetUp.CloudinarySetUp> config)
