@@ -80,7 +80,7 @@ namespace Application.Repositories
 
         public bool Update(Sneaker sneaker)
         {
-            _context.Update(sneaker);
+            _context.Sneakers.Update(sneaker);
             return Save();
         }
     }

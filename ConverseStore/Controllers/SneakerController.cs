@@ -83,7 +83,7 @@ namespace ConverseStore.Controllers
                 Name = sneakerVM.Name,
                 OFF = sneakerVM.OFF
             };
-            await _sneakerRepository.AddAsync(sneaker);
+             _sneakerRepository.Update(sneaker);
             return RedirectToAction("Index", "Sneaker");
         }
     }
