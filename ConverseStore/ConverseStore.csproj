@@ -27,8 +27,4 @@
     <ProjectReference Include="..\Context\Context.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Account\" />
-  </ItemGroup>
-
 </Project>

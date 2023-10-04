@@ -4,9 +4,12 @@ namespace ConverseStore.ViewModels
 {
     public class RegisterVM
     {
-        [Display(Name = "Address")]
-        [Required(ErrorMessage = "Address is required")]
-        public string Address { get; set; }
+        [Display(Name = "City")]
+        [Required(ErrorMessage = "City Name is required")]
+        public string City { get; set; }
+        public string? Street { get; set; }
+        public string? AddressDetails { get; set; }
+        public string? PostalCode { get; set; }
 
 
         [Display(Name = "UserName")]
