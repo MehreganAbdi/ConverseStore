@@ -17,6 +17,8 @@ namespace Context.Models
         public int? Count { get; set; }
         public string Name { get; set; }
         public int? OFF { get; set; } = 0;
+        public string? Image { get; set; }
+
 
     }
 }

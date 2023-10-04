@@ -9,5 +9,7 @@
         public int? Count { get; set; }
         public string Name { get; set; }
         public int? OFF { get; set; } = 0;
+        public IFormFile? Image { get; set; }
+
     }
 }

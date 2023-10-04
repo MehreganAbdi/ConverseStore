@@ -1,3 +1,4 @@
+using Application.CloudinarySetUp;
 using Application.Interfaces;
 using Application.Repositories;
 using Context.Data;
@@ -19,7 +20,7 @@ namespace ConverseStore
 
             builder.Services.AddScoped<ISneakerRepository, SneakerRepository>();
             builder.Services.AddScoped<ISocksRepository, SocksRepository>();
-
+            builder.Services.Configure<CloudinarySetUp>(builder.Configuration.GetSection("CloudinarySetup"));
 
             builder.Services.AddDbContext<StoreDbContext>(options =>
             {
