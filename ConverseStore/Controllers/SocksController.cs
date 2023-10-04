@@ -54,7 +54,8 @@ namespace ConverseStore.Controllers
                 Size = socks.Size,
                 Cost = socks.Cost,
                 Count = socks.Count,
-                Name = socks.Name
+                Name = socks.Name,
+                OFF = socks.OFF
             };
             return View(socksVM);
         }
@@ -71,7 +72,8 @@ namespace ConverseStore.Controllers
                 Cost = socksVM.Cost,
                 Name = socksVM.Name,
                 Count = socksVM.Count,
-                Size = socksVM.Size
+                Size = socksVM.Size,
+                OFF = socksVM.OFF
             };
             _socksRepository.Update(socks);
             return RedirectToAction("Index", "Socks");

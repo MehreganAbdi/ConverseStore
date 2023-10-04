@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <Folder Include="Views\Account\" />
-    <Folder Include="Views\Socks\" />
   </ItemGroup>
 
 </Project>
