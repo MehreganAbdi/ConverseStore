@@ -12,7 +12,7 @@ namespace ConverseStore
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -25,10 +25,12 @@ namespace ConverseStore
 
             builder.Services.Configure<CloudinarySetUp>(builder.Configuration.GetSection("CloudinarySetup"));
 
+
             builder.Services.AddDbContext<StoreDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
+
             builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<StoreDbContext>();
 
             builder.Services.AddMemoryCache();
@@ -39,6 +41,16 @@ namespace ConverseStore
             
             
             var app = builder.Build();
+
+
+            //if (args.Length == 1 && args[0].ToLower() == "seeddata")
+            //{
+            //    //
+            //    //Seed.SeedData(app);
+            //    await SeedData.SeedUsersAndRolesAsync(app);
+            //}
+
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
