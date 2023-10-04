@@ -82,11 +82,12 @@ namespace ConverseStore.Controllers
             {
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
                 SendEmail(newUser.Email, "Registration", "Registration Completed! \n Ckeck Out Our New Sneakers On Our Web . \n");
+                return RedirectToAction("Index", "Home");
             }
             return View(registerVM);
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
