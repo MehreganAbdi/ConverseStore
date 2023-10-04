@@ -6,7 +6,7 @@
 
 
 <center>
-    <a class="btn btn-primary" asp-controller="Sneaker" asp-action="Create" asp-area="">Add Sneaker</a>
+    <a class="btn btn-primary" asp-controller="Socks" asp-action="Create" asp-area="">Add Socks</a>
 </center>
 @foreach (var item in Model)
 {
@@ -33,10 +33,10 @@
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                        <a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="Sneaker" asp-action="Detail" asp-route-id="@item.Id">View</a>
+                        <a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="Socks" asp-action="Detail" asp-route-id="@item.Id">View</a>
 
-                        <a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="Sneaker" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                        <a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="Sneaker" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="Socks" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a type="button" class="btn btn-sm btn-outline-secondary" asp-controller="Socks" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
 
 
                     </div>
