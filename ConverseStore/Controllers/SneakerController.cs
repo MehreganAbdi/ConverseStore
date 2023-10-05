@@ -23,18 +23,27 @@ namespace ConverseStore.Controllers
 
         public IActionResult Delete(int Id)
         {
+            if(!User.Identity.IsAuthenticated || User.IsInRole("user"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             _sneakerRepository.Remove(_sneakerRepository.GetById(Id));
             return RedirectToAction("Index", "Sneaker");
         }
 
         public IActionResult Create()
         {
+            if (!User.Identity.IsAuthenticated || User.IsInRole("user"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var reloadSafety = new SneakerVM();
             return View(reloadSafety);
         }
         [HttpPost]
         public async Task<IActionResult> Create(SneakerVM sneakerVM)
         {
+
             var result = await _photoService.AddPhotoAsync(sneakerVM.Image);
             var sneaker = new Sneaker()
             {
@@ -52,11 +61,16 @@ namespace ConverseStore.Controllers
 
         public async Task<IActionResult> Detail(int Id)
         {
+           
             var sneaker = await _sneakerRepository.GetByIdAsync(Id);
             return View(sneaker);
         }
         public async Task<IActionResult> Edit(int Id)
         {
+            if (!User.Identity.IsAuthenticated || User.IsInRole("user"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var sneaker = await _sneakerRepository.GetByIdAsync(Id);
             var sneakerVM = new SneakerVM()
             {

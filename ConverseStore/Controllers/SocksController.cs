@@ -22,6 +22,10 @@ namespace ConverseStore.Controllers
 
         public IActionResult Create()
         {
+            if (!User.Identity.IsAuthenticated || User.IsInRole("user"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var reloadSafety = new SocksVM();
             return View(reloadSafety);
         }
@@ -49,12 +53,20 @@ namespace ConverseStore.Controllers
 
         public async Task<IActionResult> Delete(int Id)
         {
+            if (!User.Identity.IsAuthenticated || User.IsInRole("user"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             await _socksRepository.RemoveAsync(await _socksRepository.GetByIdAsync(Id));
             return RedirectToAction("Index","Socks");
         }
 
         public async Task<IActionResult> Edit(int Id)
         {
+            if (!User.Identity.IsAuthenticated || User.IsInRole("user"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var socks = await _socksRepository.GetByIdAsync(Id);
             if (socks == null)
             {
@@ -97,6 +109,7 @@ namespace ConverseStore.Controllers
 
         public async Task<IActionResult> Detail(int Id)
         {
+            
             var socks = await _socksRepository.GetByIdAsync(Id);
             return socks != null ? View(socks) : RedirectToAction("Index", "Socks"); 
         }
