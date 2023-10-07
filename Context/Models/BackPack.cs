@@ -15,5 +15,8 @@ namespace Context.Models
         public string Color { get; set; }
         public string Description { get; set; }
         public int Cost { get; set; }
+        public string? Image { get; set; }
+        public int? OFF { get; set; }
+        public int? Count { get; set; }
     }
 }
