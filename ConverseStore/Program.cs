@@ -22,6 +22,7 @@ namespace ConverseStore
             builder.Services.AddScoped<ISneakerRepository, SneakerRepository>();
             builder.Services.AddScoped<ISocksRepository, SocksRepository>();
             builder.Services.AddScoped<IPhotoService , PhotoService>();
+            builder.Services.AddScoped<IBackPackRepository, BackPackRepository>();
 
             builder.Services.Configure<CloudinarySetUp>(builder.Configuration.GetSection("CloudinarySetup"));
 
