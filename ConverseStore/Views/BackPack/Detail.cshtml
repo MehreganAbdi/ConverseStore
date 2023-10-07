@@ -1,0 +1,56 @@
+﻿@using Context.Models;
+@model BackPack
+@{
+    ViewData["Title"] = "Detail";
+}
+
+
+<div class="container">
+
+
+    <br />
+
+    <br />
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="@Model.Image" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" data-holder-rendered="true">
+                <div class="card-body">
+                    <p class="card-text">
+                        @Model.Name
+                    </p>
+                </div>
+            </div>
+
+
+
+
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <p class="card-text">
+                        <ul>
+                            <li>Size :  @Model.Size</li>
+                            <li>Color : @Model.Color</li>
+                            <li>Left : @Model.Count</li>
+                            <li>
+                                @if (Model.OFF == null || Model.OFF == 0)
+                                {
+                                    <span>Cost: @Model.Cost</span>
+                                }
+                                else
+                                {
+                                    var CostOff = (Model.Cost - (Model.Cost * (Model.OFF)) / 100);
+                                    <span>Cost :<s>@Model.Cost</s> @CostOff</span>
+                                }
+
+                            </li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

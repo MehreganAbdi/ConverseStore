@@ -38,7 +38,7 @@ namespace ConverseStore.Controllers
             var backPack = new BackPack()
             {
                 Name = backPackVM.Name,
-                Description = backPackVM.Description,
+             
                 Color = backPackVM.Color,
                 Cost = backPackVM.Cost,
                 OFF = 0,
@@ -60,7 +60,7 @@ namespace ConverseStore.Controllers
             {
                 Id = backPack.Id,
                 Name = backPack.Name,
-                Description = backPack.Description,
+                
                 Color = backPack.Color,
                 Cost = backPack.Cost,
                 OFF= backPack.OFF,
@@ -80,7 +80,7 @@ namespace ConverseStore.Controllers
             {
                 Id = (int)backPackVM.Id,
                 Name = backPackVM.Name,
-                Description = (string)backPackVM.Description,
+                
                 Color = backPackVM.Color,
                 Cost = backPackVM.Cost,
                 OFF = backPackVM.OFF,
