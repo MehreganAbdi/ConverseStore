@@ -67,5 +67,10 @@ namespace ConverseStore.Controllers
             _backPackRepository.Update(backPack);
             return RedirectToAction("Index", "BackPack");
         }
+        public async Task<IActionResult> Delete(int Id)
+        {
+            await _backPackRepository.RemoveAsync(await _backPackRepository.GetByIdAsync(Id));
+            return RedirectToAction("Index", "BackPack");
+        }
     }
 }
