@@ -18,6 +18,7 @@ namespace Context.Data
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Sneaker> Sneakers { get; set; }
         public DbSet<Socks> Socks { get; set; }
+        public DbSet<BackPack> BackPacks { get; set; }
 
     }
 }
