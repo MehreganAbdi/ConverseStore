@@ -23,7 +23,7 @@ namespace ConverseStore.Controllers
 
         public IActionResult Create()
         {
-            var reloadSafety = new BackPack();
+            var reloadSafety = new BackPackVM();
             return View(reloadSafety);
         }
         [HttpPost]
@@ -94,6 +94,10 @@ namespace ConverseStore.Controllers
         {
             await _backPackRepository.RemoveAsync(await _backPackRepository.GetByIdAsync(Id));
             return RedirectToAction("Index", "BackPack");
+        }
+        public async Task<IActionResult> Detail(int Id)
+        {
+            return View(await _backPackRepository.GetByIdAsync(Id));
         }
     }
 }
