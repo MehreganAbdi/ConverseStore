@@ -27,7 +27,10 @@ namespace ConverseStore.Controllers
 
         public IActionResult Create()
         {
-            
+            if(User.IsInRole("user") || !User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var reloadSafety = new BackPackVM();
             return View(reloadSafety);
         }
@@ -56,6 +59,10 @@ namespace ConverseStore.Controllers
 
         public async Task<IActionResult> Edit(int Id)
         {
+            if (User.IsInRole("user") || !User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var backPack = await _backPackRepository.GetByIdAsync(Id);
             if (backPack == null)
             {
@@ -97,6 +104,10 @@ namespace ConverseStore.Controllers
         }
         public async Task<IActionResult> Delete(int Id)
         {
+            if (User.IsInRole("user") || !User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             await _backPackRepository.RemoveAsync(await _backPackRepository.GetByIdAsync(Id));
             return RedirectToAction("Index", "BackPack");
         }
