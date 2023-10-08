@@ -3,9 +3,22 @@
 @{
     ViewData["Title"] = "BackPacks";
 }
-
+@if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+{
+    <center>
+        <a class="btn btn-primary" asp-controller="BackPack" asp-action="Create" asp-area="">Add BackPack</a>
+    </center>
+}
 <center>
-    <a class="btn btn-primary" asp-controller="BackPack" asp-action="Create" asp-area="">Add BackPack</a>
+    @using (Html.BeginForm("Index", "BackPack", FormMethod.Get))
+    {
+
+        @Html.TextBox("searching")
+        <br />
+        <br />
+        <input type="image" src="~/icons/search-3-32.png" style="width:40px; padding:5px; border-radius:20%" value="Search" class="btn-primary" />
+
+    }
 </center>
 @foreach (var item in Model)
 {
@@ -18,7 +31,7 @@
                     <b>@item.Name</b> <br />
                     <br>
                     <h6>@item.Color</h6>
-                    
+
                     <br />
                     @if (item.OFF == null || item.OFF == 0)
                     {

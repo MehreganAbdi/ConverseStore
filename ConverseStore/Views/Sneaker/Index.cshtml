@@ -3,15 +3,29 @@
 @{
     ViewData["Title"] = "Sneakers";
 }
+@if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+{
+    <center>
+        <a class="btn btn-primary" asp-controller="Sneaker" asp-action="Create" asp-area="">Add Sneaker</a>
+    </center>
+}
 <center>
-    <a class="btn btn-primary" asp-controller="Sneaker" asp-action="Create" asp-area="">Add Sneaker</a>
+    @using (Html.BeginForm("Index", "Sneaker", FormMethod.Get))
+    {
+
+        @Html.TextBox("searching")
+        <br />
+        <br />
+        <input type="image" src="~/icons/search-3-32.png" style="width:40px; padding:5px; border-radius:20%" value="Search" class="btn-primary" />
+
+    }
 </center>
 @foreach (var item in Model)
 {
 
     <div class="col-md-4">
         <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="@item.Image" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"  data-holder-rendered="true">
+            <img class="card-img-top" src="@item.Image" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" data-holder-rendered="true">
             <div class="card-body">
                 <p class="card-text">
                     <b>@item.Name</b> <br />
