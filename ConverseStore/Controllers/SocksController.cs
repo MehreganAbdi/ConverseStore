@@ -14,9 +14,14 @@ namespace ConverseStore.Controllers
             _socksRepository = socksRepository;
             _photoService = photoService;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searching)
         {
             var allSocks = await _socksRepository.GetAllAsync();
+            if (searching != null)
+            {
+                allSocks = allSocks.Where(s => s.Name.Contains(searching));
+
+            }
             return View(allSocks);
         }
 
@@ -44,7 +49,7 @@ namespace ConverseStore.Controllers
                 Cost = socksVM.Cost,
                 Count = socksVM.Count,
                 Size = socksVM.Size,
-                OFF = 0 , 
+                OFF = 0,
                 Image = result.Url.ToString()
             };
             await _socksRepository.AddAsync(socks);
@@ -58,7 +63,7 @@ namespace ConverseStore.Controllers
                 return RedirectToAction("Index", "Home");
             }
             await _socksRepository.RemoveAsync(await _socksRepository.GetByIdAsync(Id));
-            return RedirectToAction("Index","Socks");
+            return RedirectToAction("Index", "Socks");
         }
 
         public async Task<IActionResult> Edit(int Id)
@@ -99,7 +104,7 @@ namespace ConverseStore.Controllers
                 Name = socksVM.Name,
                 Count = socksVM.Count,
                 Size = socksVM.Size,
-                OFF = socksVM.OFF ,
+                OFF = socksVM.OFF,
                 Image = result.Url.ToString()
             };
             _socksRepository.Update(socks);
@@ -109,9 +114,9 @@ namespace ConverseStore.Controllers
 
         public async Task<IActionResult> Detail(int Id)
         {
-            
+
             var socks = await _socksRepository.GetByIdAsync(Id);
-            return socks != null ? View(socks) : RedirectToAction("Index", "Socks"); 
+            return socks != null ? View(socks) : RedirectToAction("Index", "Socks");
         }
     }
 }

@@ -15,9 +15,14 @@ namespace ConverseStore.Controllers
             _photoService = photoService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searching)
         {
+
             var sneakers = await _sneakerRepository.GetAllAsync();
+            if (searching != null)
+            {
+                sneakers = sneakers.Where(s => s.Name.Contains(searching) || s.Color.Contains(searching));
+            }
             return View(sneakers);
         }
 

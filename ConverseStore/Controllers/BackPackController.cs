@@ -10,19 +10,24 @@ namespace ConverseStore.Controllers
         private readonly IBackPackRepository _backPackRepository;
         private readonly IPhotoService _photoService;
 
-        public BackPackController(IBackPackRepository backPackRepository , IPhotoService photoService)
+        public BackPackController(IBackPackRepository backPackRepository, IPhotoService photoService)
         {
             _backPackRepository = backPackRepository;
             _photoService = photoService;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searching)
         {
             var backPacks = await _backPackRepository.GetAllAsync();
+            if(searching != null)
+            {
+                backPacks = backPacks.Where(b => b.Name.Contains(searching));
+            }
             return View(backPacks);
         }
 
         public IActionResult Create()
         {
+            
             var reloadSafety = new BackPackVM();
             return View(reloadSafety);
         }
@@ -38,7 +43,7 @@ namespace ConverseStore.Controllers
             var backPack = new BackPack()
             {
                 Name = backPackVM.Name,
-             
+
                 Color = backPackVM.Color,
                 Cost = backPackVM.Cost,
                 OFF = 0,
@@ -52,7 +57,7 @@ namespace ConverseStore.Controllers
         public async Task<IActionResult> Edit(int Id)
         {
             var backPack = await _backPackRepository.GetByIdAsync(Id);
-            if (backPack==null)
+            if (backPack == null)
             {
                 return RedirectToAction("Index", "BackPack");
             }
@@ -60,10 +65,10 @@ namespace ConverseStore.Controllers
             {
                 Id = backPack.Id,
                 Name = backPack.Name,
-                
+
                 Color = backPack.Color,
                 Cost = backPack.Cost,
-                OFF= backPack.OFF,
+                OFF = backPack.OFF,
                 Count = (int)backPack.Count
             };
             return View(backPackVM);
@@ -80,7 +85,7 @@ namespace ConverseStore.Controllers
             {
                 Id = (int)backPackVM.Id,
                 Name = backPackVM.Name,
-                
+
                 Color = backPackVM.Color,
                 Cost = backPackVM.Cost,
                 OFF = backPackVM.OFF,
